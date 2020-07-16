@@ -1,7 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class BtnLeft extends Component {
+class BtnLeft extends Component {
+  handleBtnLeft(params) {
+    // console.log('object');
+  }
   render() {
-    return <div className='col s2'>Botão esquerda</div>;
+    return (
+      <div style={styles}>
+        <button className='waves-effect waves-light btn' onClick={this.handleBtnLeft()}>
+          &lt;
+        </button>
+      </div>
+    );
   }
 }
+
+const styles = {
+  display: 'inline-block',
+  width: 50,
+  height: 35,
+};
+
+function mapStateToProps(state) {
+  return { date: state.date };
+}
+
+export default connect(mapStateToProps)(BtnLeft);

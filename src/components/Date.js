@@ -1,28 +1,34 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import monthsYears from '../utils/monthYear';
 
 class Date extends Component {
+  //
+
+  changeDate = e => {
+    const value = e.target.value;
+    this.props.dispatch({ type: 'CHANGE_DATE', month: value });
+  };
+
   render() {
     return (
-      <div className='col s4'>
-        <label>Browser Select</label>
-        <select className='browser-default'>
-          <option value='jan/2019' selected>
-            Jan/2019
-          </option>
-          <option value='fev/2019'>Fev/2019</option>
-          <option value='mar/2019'>Mar/2019</option>
-          <option value='abr/2019'>Abr/2019</option>
-          <option value='mai/2019'>Mai/2019</option>
-          <option value='jun/2019'>Jun/2019</option>
-          <option value='jul/2019'>Jul/2019</option>
-          <option value='ago/2019'>Ago/2019</option>
-          <option value='set/2019'>Set/2019</option>
-          <option value='out/2019'>Out/2019</option>
-          <option value='nov/2019'>Dez/2019</option>
-        </select>
-      </div>
+      <select value={this.props.month} onChange={this.changeDate} className='browser-default' style={styles}>
+        {monthsYears.map(monthYear => {
+          return <option value={monthYear}>{monthYear}</option>;
+        })}
+      </select>
     );
   }
 }
 
-export default Date;
+const styles = {
+  display: 'inline-block',
+  width: 100,
+};
+
+const mapStateToProps = state => {
+  return { month: state.dateReducer.month };
+};
+
+export default connect(mapStateToProps)(Date);
