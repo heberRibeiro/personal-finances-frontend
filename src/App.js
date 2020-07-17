@@ -5,6 +5,7 @@ import store from './store';
 
 import Date from './components/Date';
 import BtnLeft from './components/BtnLeft';
+import BtnRight from './components/BtnRight';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <div className='container center'>
         <BtnLeft />
         <Date />
+        <BtnRight />
       </div>
     </Provider>
   );

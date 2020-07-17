@@ -9,7 +9,7 @@ class BtnLeft extends Component {
     return (
       <div style={styles}>
         <button className='waves-effect waves-light btn' onClick={this.handleBtnLeft()}>
-          &lt;
+          &gt;
         </button>
       </div>
     );
