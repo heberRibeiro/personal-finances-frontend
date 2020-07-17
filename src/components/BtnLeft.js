@@ -16,14 +16,14 @@ class BtnLeft extends Component {
   }
 }
 
-const styles = {
-  display: 'inline-block',
-  width: 50,
-  height: 35,
-};
-
 function mapStateToProps(state) {
   return { date: state.date };
 }
 
 export default connect(mapStateToProps)(BtnLeft);
+
+const styles = {
+  display: 'inline-block',
+  width: 50,
+  height: 35,
+};
