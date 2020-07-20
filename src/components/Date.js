@@ -71,6 +71,10 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps)(Date);
 
 const styles = {
-  display: 'inline-block',
+  padding: 0,
+  justifyContent: 'center',
+  alighItems: 'center',
+  display: 'flex',
   width: 100,
+  height: 35,
 };

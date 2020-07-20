@@ -15,7 +15,7 @@ export default function App() {
       <div className='container center'>
         <h2>Personal Finances</h2>
       </div>
-      <div className='container center'>
+      <div style={styles.container} className='container center'>
         <BtnLeft />
         <Date />
         <BtnRight />
@@ -25,3 +25,11 @@ export default function App() {
     </Provider>
   );
 }
+
+const styles = {
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+};
