@@ -19,6 +19,11 @@ class Date extends Component {
       this.props.dispatch(dateAction(monthYearCurrent, true, false));
       return;
     }
+
+    if (indexMonthYearCurrent === monthsYears.length) {
+      this.props.dispatch(dateAction(monthYearCurrent, false, true));
+      return;
+    }
   }
 
   changeDate = e => {

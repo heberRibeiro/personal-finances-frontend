@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-class BtnLeft extends Component {
-  handleBtnLeft(params) {
+import monthsYears from '../utils/monthYear';
+import dateAction from '../store/modules/Date/action';
+
+class BtnRight extends Component {
+  //
+
+  handleBtnRight = e => {
     //
-  }
+
+    const monthYearCurrent = this.props.month;
+    const indexMonthYearCurrent = monthsYears.findIndex((value, index) => {
+      return value === monthYearCurrent;
+    });
+
+    const indexMonthYearNext = indexMonthYearCurrent + 1;
+    const monthYearNext = monthsYears[indexMonthYearNext];
+
+    if (indexMonthYearCurrent === monthsYears.length - 2) {
+      this.props.dispatch(dateAction(monthYearNext, false, true));
+      return;
+    }
+
+    this.props.dispatch(dateAction(monthYearNext, false, false));
+  };
   render() {
     return (
       <div style={styles}>
-        <button className='waves-effect waves-light btn' onClick={this.handleBtnLeft()}>
+        <button disabled={this.props.disabled} className='waves-effect waves-light btn' onClick={this.handleBtnRight}>
           &gt;
         </button>
       </div>
@@ -17,10 +37,13 @@ class BtnLeft extends Component {
 }
 
 function mapStateToProps(state) {
-  return { date: state.date };
+  return {
+    month: state.dateReducer.month,
+    disabled: state.dateReducer.disabledBtnRight,
+  };
 }
 
-export default connect(mapStateToProps)(BtnLeft);
+export default connect(mapStateToProps)(BtnRight);
 
 const styles = {
   display: 'inline-block',
