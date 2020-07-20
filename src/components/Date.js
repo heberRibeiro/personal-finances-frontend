@@ -11,12 +11,8 @@ class Date extends Component {
     //
     const monthYearCurrent = this.props.month;
 
-    let indexMonthYearCurrent;
-    monthsYears.forEach((value, index) => {
-      if (monthYearCurrent === value) {
-        indexMonthYearCurrent = index;
-        return;
-      }
+    const indexMonthYearCurrent = monthsYears.findIndex((value, index) => {
+      return value === monthYearCurrent;
     });
 
     if (indexMonthYearCurrent === 0) {
