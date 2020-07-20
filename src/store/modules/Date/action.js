@@ -1,6 +1,8 @@
-export default function date(value) {
+export default function date(monthYear, disabledBtnLeft, disabledBtnRight) {
   return {
     type: 'CHANGE_DATE',
-    month: `${value}`,
+    month: `${monthYear}`,
+    disabledBtnLeft: disabledBtnLeft,
+    disabledBtnRight: disabledBtnRight,
   };
 }

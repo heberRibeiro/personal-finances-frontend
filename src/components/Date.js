@@ -7,9 +7,41 @@ import monthsYears from '../utils/monthYear';
 class Date extends Component {
   //
 
+  componentDidMount() {
+    //
+    const monthYearCurrent = this.props.month;
+
+    let indexMonthYearCurrent;
+    monthsYears.forEach((value, index) => {
+      if (monthYearCurrent === value) {
+        indexMonthYearCurrent = index;
+        return;
+      }
+    });
+
+    if (indexMonthYearCurrent === 0) {
+      this.props.dispatch(dateAction(monthYearCurrent, true, false));
+      return;
+    }
+  }
+
   changeDate = e => {
-    const value = e.target.value;
-    this.props.dispatch(dateAction(value));
+    const monthYearSelected = e.target.value;
+
+    const indexMonthYearSelected = monthsYears.findIndex((value, index) => {
+      return value === monthYearSelected;
+    });
+
+    if (indexMonthYearSelected === 0) {
+      this.props.dispatch(dateAction(`${monthYearSelected}`, true, false));
+      return;
+    }
+    if (indexMonthYearSelected === monthsYears.length) {
+      this.props.dispatch(dateAction(monthYearSelected, false, true));
+      return;
+    }
+
+    this.props.dispatch(dateAction(monthYearSelected, false, false));
   };
 
   render() {
@@ -28,7 +60,11 @@ class Date extends Component {
 }
 
 const mapStateToProps = state => {
-  return { month: state.dateReducer.month };
+  return {
+    month: state.dateReducer.month,
+    disabledBtnLeft: state.dateReducer.disabledBtnLeft,
+    disabledBtnRight: state.dateReducer.disabledBtnRight,
+  };
 };
 
 export default connect(mapStateToProps)(Date);
