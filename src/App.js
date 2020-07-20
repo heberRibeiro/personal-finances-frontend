@@ -7,6 +7,7 @@ import Date from './components/Date';
 import BtnLeft from './components/BtnLeft';
 import BtnRight from './components/BtnRight';
 import Info from './components/Info';
+import Search from './components/Search';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
         <BtnRight />
       </div>
       <Info />
+      <Search />
     </Provider>
   );
 }
