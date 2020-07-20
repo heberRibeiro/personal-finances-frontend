@@ -16,7 +16,11 @@ class Date extends Component {
     return (
       <select value={this.props.month} onChange={this.changeDate} className='browser-default' style={styles}>
         {monthsYears.map(monthYear => {
-          return <option value={monthYear}>{monthYear}</option>;
+          return (
+            <option key={monthYear} value={monthYear}>
+              {monthYear}
+            </option>
+          );
         })}
       </select>
     );
