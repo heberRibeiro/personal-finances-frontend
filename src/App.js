@@ -8,6 +8,7 @@ import BtnLeft from './components/BtnLeft';
 import BtnRight from './components/BtnRight';
 import Info from './components/Info';
 import Search from './components/Search';
+import Card from './components/Card';
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       </div>
       <Info />
       <Search />
+      <Card />
     </Provider>
   );
 }
