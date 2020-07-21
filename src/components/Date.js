@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import dateAction from '../store/modules/Date/action';
 import monthsYears from '../utils/monthYear';
+import transformPeriod from '../utils/tranformPeriod';
 
 class Date extends Component {
   //
@@ -14,6 +15,8 @@ class Date extends Component {
     const indexMonthYearCurrent = monthsYears.findIndex((value, index) => {
       return value === monthYearCurrent;
     });
+
+    console.log(transformPeriod('Jan/2019'));
 
     if (indexMonthYearCurrent === 0) {
       this.props.dispatch(dateAction(monthYearCurrent, true, false));
