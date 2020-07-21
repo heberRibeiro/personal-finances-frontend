@@ -8,7 +8,7 @@ class BtnLeft extends Component {
   //
 
   handleBtnLeft = e => {
-    const monthYearCurrent = this.props.month;
+    const monthYearCurrent = this.props.period;
 
     const indexMonthYearCurrent = monthsYears.findIndex((value, index) => {
       return value === monthYearCurrent;
@@ -38,7 +38,7 @@ class BtnLeft extends Component {
 
 function mapStateToProps(state) {
   return {
-    month: state.dateReducer.month,
+    period: state.dateReducer.period,
     disabled: state.dateReducer.disabledBtnLeft,
   };
 }

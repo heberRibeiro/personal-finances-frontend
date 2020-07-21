@@ -9,7 +9,7 @@ class Date extends Component {
 
   componentDidMount() {
     //
-    const monthYearCurrent = this.props.month;
+    const monthYearCurrent = this.props.period;
 
     const indexMonthYearCurrent = monthsYears.findIndex((value, index) => {
       return value === monthYearCurrent;
@@ -47,7 +47,7 @@ class Date extends Component {
 
   render() {
     return (
-      <select value={this.props.month} onChange={this.changeDate} className='browser-default' style={styles}>
+      <select value={this.props.period} onChange={this.changeDate} className='browser-default' style={styles}>
         {monthsYears.map(monthYear => {
           return (
             <option key={monthYear} value={monthYear}>
@@ -62,7 +62,7 @@ class Date extends Component {
 
 const mapStateToProps = state => {
   return {
-    month: state.dateReducer.month,
+    period: state.dateReducer.period,
     disabledBtnLeft: state.dateReducer.disabledBtnLeft,
     disabledBtnRight: state.dateReducer.disabledBtnRight,
   };

@@ -5,10 +5,10 @@ export class Buttons extends Component {
   render() {
     return (
       <div style={styles.button}>
-        <i style={styles.cursor} class='material-icons'>
+        <i style={styles.cursor} className='material-icons'>
           mode_edit
         </i>
-        <i style={styles.cursor} class='material-icons'>
+        <i style={styles.cursor} className='material-icons'>
           delete
         </i>
       </div>
