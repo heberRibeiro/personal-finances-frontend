@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import dateAction from '../store/modules/Date/action';
+import periodAction from '../store/modules/Date/action';
 import monthsYears from '../utils/monthYear';
 import enableDisableButtons from '../utils/enableDisableButtons';
+import tranformPeriod from '../utils/tranformPeriod';
+import releasesAction from '../store/modules/Releases/action';
+
+import api from '../api';
 
 class Date extends Component {
   //
@@ -11,13 +15,19 @@ class Date extends Component {
   componentDidUpdate() {
     const monthYearCurrent = this.props.period;
     enableDisableButtons.call(this, monthYearCurrent);
-    // this.props.dispatch(dateAction(monthYearCurrent));
+
+    (async () => {
+      const res = await api.get(tranformPeriod(monthYearCurrent));
+      const releases = await res.data.lenght;
+
+      await this.props.dispatch(releasesAction(releases));
+    })();
   }
 
   changeDate = e => {
     const monthYearSelected = e.target.value;
     enableDisableButtons.call(this, monthYearSelected);
-    this.props.dispatch(dateAction(monthYearSelected));
+    this.props.dispatch(periodAction(monthYearSelected));
   };
 
   render() {
@@ -37,7 +47,7 @@ class Date extends Component {
 
 const mapStateToProps = state => {
   return {
-    period: state.dateReducer.period,
+    period: state.periodReducer.period,
   };
 };
 

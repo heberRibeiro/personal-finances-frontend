@@ -1,5 +1,5 @@
 /**
- * @description Receive the period in mm / yyyy format and transform it into the url format
+ * @description Receive the period in'Jan/2019 format and transform it into the url format
  * @param {*} period Period in format mm/yyyy
  */
 export default function transformPeriod(period) {

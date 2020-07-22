@@ -1,4 +1,4 @@
-export default function date(monthYear) {
+export default function period(monthYear) {
   return {
     type: 'CHANGE_DATE',
     period: `${monthYear}`,

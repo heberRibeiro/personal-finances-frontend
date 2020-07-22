@@ -1,4 +1,4 @@
-export default function Date(state = { period: 'Jan/2019' }, action) {
+export default function period(state = { period: 'Jan/2019' }, action) {
   switch (action.type) {
     case 'CHANGE_DATE':
       return {

@@ -7,7 +7,7 @@ const getAll = () => {
 const get = async period => {
   try {
     const res = await http.get(`api/transaction/period?period=${period}`);
-    return await res;
+    return res;
   } catch (error) {
     console.log(error);
   }

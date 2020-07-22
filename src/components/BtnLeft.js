@@ -30,7 +30,7 @@ class BtnLeft extends Component {
 
 function mapStateToProps(state) {
   return {
-    period: state.dateReducer.period,
+    period: state.periodReducer.period,
     disabled: state.btnLeftReducer.disabledBtnLeft,
   };
 }

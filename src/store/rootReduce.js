@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 
-import dateReducer from './modules/Date/reducer';
+import periodReducer from './modules/Date/reducer';
 import btnLeftReducer from './modules/BtnLeft/reducer';
 import btnRightReducer from './modules/BtnRight/reducer';
+import releasesReducer from './modules/Releases/reducer';
 
 export default combineReducers({
-  dateReducer,
+  periodReducer,
   btnLeftReducer,
   btnRightReducer,
+  releasesReducer,
 });
