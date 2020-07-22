@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import tranformPeriod from '../utils/tranformPeriod';
-import releasesAction from '../store/modules/Releases/action';
+import infoAction from '../store/modules/Info/action';
 
 import api from '../api';
 
@@ -11,8 +11,11 @@ export class Info extends Component {
     const monthYearCurrent = this.props.period;
     (async () => {
       const res = await api.get(tranformPeriod(monthYearCurrent));
-      const releases = await res.data.lenght;
-      await this.props.dispatch(releasesAction(releases));
+      const data = await res.data;
+      const releases = await data.lenght;
+      const transaction = await data.transaction;
+
+      await this.props.dispatch(infoAction(data, releases, 200, 0, 0));
     })();
   }
 
@@ -47,7 +50,11 @@ export class Info extends Component {
 const mapStateToProps = state => {
   return {
     period: state.periodReducer.period,
-    releases: state.releasesReducer.releases,
+    data: state.infoReducer.data,
+    releases: state.infoReducer.releases,
+    incomes: state.infoReducer.incomes,
+    expenses: state.infoReducer.expenses,
+    balance: state.infoReducer.balance,
   };
 };
 

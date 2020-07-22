@@ -5,7 +5,7 @@ import periodAction from '../store/modules/Date/action';
 import monthsYears from '../utils/monthYear';
 import enableDisableButtons from '../utils/enableDisableButtons';
 import tranformPeriod from '../utils/tranformPeriod';
-import releasesAction from '../store/modules/Releases/action';
+import infoAction from '../store/modules/Info/action';
 
 import api from '../api';
 
@@ -20,7 +20,7 @@ class Date extends Component {
       const res = await api.get(tranformPeriod(monthYearCurrent));
       const releases = await res.data.lenght;
 
-      await this.props.dispatch(releasesAction(releases));
+      await this.props.dispatch(infoAction(80, releases, 50));
     })();
   }
 
