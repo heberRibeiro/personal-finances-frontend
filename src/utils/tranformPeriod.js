@@ -10,5 +10,5 @@ export default function transformPeriod(period) {
   const year = periodArray[1];
   const month = (Number.parseInt(monthStr.indexOf(periodArray[0].toLowerCase())) + 1).toString();
 
-  return month + '-' + year;
+  return year + '-' + month;
 }

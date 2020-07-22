@@ -1,29 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import monthsYears from '../utils/monthYear';
-import dateAction from '../store/modules/Date/action';
+import enableDisableButtons from '../utils/enableDisableButtons';
+import changePeriodState from '../utils/changePeriodState';
 
 class BtnRight extends Component {
   //
 
-  handleBtnRight = e => {
-    //
-
+  componentDidMount() {
     const monthYearCurrent = this.props.period;
-    const indexMonthYearCurrent = monthsYears.findIndex((value, index) => {
-      return value === monthYearCurrent;
-    });
+    enableDisableButtons.call(this, monthYearCurrent);
+  }
 
-    const indexMonthYearNext = indexMonthYearCurrent + 1;
-    const monthYearNext = monthsYears[indexMonthYearNext];
-
-    if (indexMonthYearCurrent === monthsYears.length - 2) {
-      this.props.dispatch(dateAction(monthYearNext, false, true));
-      return;
-    }
-
-    this.props.dispatch(dateAction(monthYearNext, false, false));
+  handleBtnRight = e => {
+    const monthYearCurrent = this.props.period;
+    changePeriodState.call(this, monthYearCurrent, false);
   };
   render() {
     return (
@@ -39,7 +30,7 @@ class BtnRight extends Component {
 function mapStateToProps(state) {
   return {
     period: state.dateReducer.period,
-    disabled: state.dateReducer.disabledBtnRight,
+    disabled: state.btnRightReducer.disabledBtnRight,
   };
 }
 

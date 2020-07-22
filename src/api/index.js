@@ -1,11 +1,16 @@
-const http = require('./http-common');
+const http = require('./http-common').default;
 
 const getAll = () => {
   return http.get('/api/transaction');
 };
 
-const get = (year, month) => {
-  return http.get(`api/transaction/period?period=${year}-${month}`);
+const get = async period => {
+  try {
+    const res = await http.get(`api/transaction/period?period=${period}`);
+    return await res;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 module.exports = {

@@ -3,49 +3,21 @@ import { connect } from 'react-redux';
 
 import dateAction from '../store/modules/Date/action';
 import monthsYears from '../utils/monthYear';
-import transformPeriod from '../utils/tranformPeriod';
+import enableDisableButtons from '../utils/enableDisableButtons';
 
 class Date extends Component {
   //
 
-  componentDidMount() {
-    //
+  componentDidUpdate() {
     const monthYearCurrent = this.props.period;
-
-    const indexMonthYearCurrent = monthsYears.findIndex((value, index) => {
-      return value === monthYearCurrent;
-    });
-
-    console.log(transformPeriod('Jan/2019'));
-
-    if (indexMonthYearCurrent === 0) {
-      this.props.dispatch(dateAction(monthYearCurrent, true, false));
-      return;
-    }
-
-    if (indexMonthYearCurrent === monthsYears.length) {
-      this.props.dispatch(dateAction(monthYearCurrent, false, true));
-      return;
-    }
+    enableDisableButtons.call(this, monthYearCurrent);
+    // this.props.dispatch(dateAction(monthYearCurrent));
   }
 
   changeDate = e => {
     const monthYearSelected = e.target.value;
-
-    const indexMonthYearSelected = monthsYears.findIndex((value, index) => {
-      return value === monthYearSelected;
-    });
-
-    if (indexMonthYearSelected === 0) {
-      this.props.dispatch(dateAction(`${monthYearSelected}`, true, false));
-      return;
-    }
-    if (indexMonthYearSelected === monthsYears.length) {
-      this.props.dispatch(dateAction(monthYearSelected, false, true));
-      return;
-    }
-
-    this.props.dispatch(dateAction(monthYearSelected, false, false));
+    enableDisableButtons.call(this, monthYearSelected);
+    this.props.dispatch(dateAction(monthYearSelected));
   };
 
   render() {
@@ -66,8 +38,6 @@ class Date extends Component {
 const mapStateToProps = state => {
   return {
     period: state.dateReducer.period,
-    disabledBtnLeft: state.dateReducer.disabledBtnLeft,
-    disabledBtnRight: state.dateReducer.disabledBtnRight,
   };
 };
 
