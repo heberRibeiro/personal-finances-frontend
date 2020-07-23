@@ -11,7 +11,7 @@ export class Card extends Component {
   render() {
     return (
       <div className='container center'>
-        <div style={styles.row} className='row'>
+        <div style={styles[`${this.props.stylus}`]} className='row'>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }} className='col s12'>
             <div style={styles.day}>
               <b>{this.props.values.day}</b>
@@ -59,10 +59,16 @@ const styles = {
     width: 'auto',
     fontWeight: 'bold',
   },
-  row: {
+  expense: {
     margin: 5,
     border: 30,
     borderRadius: 10,
     backgroundColor: 'LightCoral',
+  },
+  income: {
+    margin: 5,
+    border: 30,
+    borderRadius: 10,
+    backgroundColor: 'green',
   },
 };

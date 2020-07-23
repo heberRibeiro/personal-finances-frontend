@@ -14,7 +14,9 @@ export class Cards extends Component {
         {this.props.transaction === undefined && 'Caregando...'}
         {this.props.transaction !== undefined &&
           this.props.transaction.map(value => {
-            return <Card key={value._id} values={value} />;
+            let tag = value.type === '-' ? 'expense' : 'income';
+
+            return <Card stylus={`${tag}`} key={value._id} values={value} />;
           })}
       </div>
     );
