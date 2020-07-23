@@ -4,21 +4,25 @@ import { connect } from 'react-redux';
 import Buttons from './Buttons';
 
 export class Card extends Component {
+  componentDidMount() {
+    console.log(this.props.values);
+  }
+
   render() {
     return (
       <div className='container center'>
         <div style={styles.row} className='row'>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }} className='col s12'>
             <div style={styles.day}>
-              <b>01</b>
+              <b>{this.props.values.day}</b>
             </div>
             <div style={styles.description}>
               <div>
-                <b>Lazer</b>
+                <b>{this.props.values.category}</b>
               </div>
-              <div>Viagem para praia</div>
+              <div>{this.props.values.description}</div>
             </div>
-            <div style={styles.currency}>R$40000</div>
+            <div style={styles.currency}>{this.props.values.value}</div>
             <Buttons />
           </div>
         </div>
@@ -56,7 +60,7 @@ const styles = {
     fontWeight: 'bold',
   },
   row: {
-    margin: 0,
+    margin: 5,
     border: 30,
     borderRadius: 10,
     backgroundColor: 'LightCoral',

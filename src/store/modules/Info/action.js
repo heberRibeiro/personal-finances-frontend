@@ -1,4 +1,4 @@
-export default function info(data, releases, incomes, expenses, balance) {
+export default function info(data, releases, incomes, expenses, balance, transaction) {
   return {
     type: 'INFO_ACTION',
     data: data,
@@ -6,5 +6,6 @@ export default function info(data, releases, incomes, expenses, balance) {
     incomes: incomes,
     expenses: expenses,
     balance: balance,
+    transaction: transaction,
   };
 }

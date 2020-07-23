@@ -7,6 +7,7 @@ export default function info(state = '', action) {
         incomes: action.incomes,
         expenses: action.expenses,
         balance: action.balance,
+        transaction: action.transaction,
       };
 
     default:

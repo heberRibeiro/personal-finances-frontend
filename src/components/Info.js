@@ -12,13 +12,10 @@ export class Info extends Component {
 
     (async () => {
       const res = await api.get(tranformPeriod(monthYearCurrent));
-      const data = await res.data;
-      const releases = await data.lenght;
-      const incomes = await data.income;
-      const expenses = await data.expenses;
-      const balance = await data.balance;
 
-      await this.props.dispatch(infoAction(data, releases, incomes, expenses, balance));
+      const { data, releases, incomes, expenses, balance, transaction } = res;
+
+      await this.props.dispatch(infoAction(data, releases, incomes, expenses, balance, transaction));
     })();
   }
 
