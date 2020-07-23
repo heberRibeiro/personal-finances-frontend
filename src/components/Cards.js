@@ -13,10 +13,10 @@ export class Cards extends Component {
       <div>
         {this.props.transaction === undefined && 'Caregando...'}
         {this.props.transaction !== undefined &&
-          this.props.transaction.map(value => {
-            let tag = value.type === '-' ? 'expense' : 'income';
+          this.props.transaction.map(transaction => {
+            let tag = transaction.type === '-' ? 'expense' : 'income';
 
-            return <Card stylus={`${tag}`} key={value._id} values={value} />;
+            return <Card stylus={`${tag}`} key={transaction._id} transaction={transaction} />;
           })}
       </div>
     );

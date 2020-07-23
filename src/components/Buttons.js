@@ -5,10 +5,10 @@ export class Buttons extends Component {
   render() {
     return (
       <div style={styles.button}>
-        <i style={styles.cursor} className='material-icons'>
+        <i style={styles.cursor} className='material-icons modal-trigger' data-target='modal1'>
           mode_edit
         </i>
-        <i style={styles.cursor} className='material-icons'>
+        <i style={styles.cursor} className='material-icons modal-trigger' data-target='modal1'>
           delete
         </i>
       </div>

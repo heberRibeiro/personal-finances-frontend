@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Modal from './Modal';
 import Buttons from './Buttons';
 
 export class Card extends Component {
@@ -14,16 +15,17 @@ export class Card extends Component {
         <div style={styles[`${this.props.stylus}`]} className='row'>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'left' }} className='col s12'>
             <div style={styles.day}>
-              <b>{this.props.values.day}</b>
+              <b>{this.props.transaction.day}</b>
             </div>
             <div style={styles.description}>
               <div>
-                <b>{this.props.values.category}</b>
+                <b>{this.props.transaction.category}</b>
               </div>
-              <div>{this.props.values.description}</div>
+              <div>{this.props.transaction.description}</div>
             </div>
-            <div style={styles.currency}>{this.props.values.value}</div>
-            <Buttons />
+            <div style={styles.currency}>{this.props.transaction.value}</div>
+            <Buttons transaction={this.props.transaction} />
+            <Modal transaction={this.props.transaction} />
           </div>
         </div>
       </div>
