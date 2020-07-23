@@ -9,13 +9,16 @@ import api from '../api';
 export class Info extends Component {
   componentDidMount() {
     const monthYearCurrent = this.props.period;
+
     (async () => {
       const res = await api.get(tranformPeriod(monthYearCurrent));
       const data = await res.data;
       const releases = await data.lenght;
-      const transaction = await data.transaction;
+      const incomes = await data.income;
+      const expenses = await data.expenses;
+      const balance = await data.balance;
 
-      await this.props.dispatch(infoAction(data, releases, 200, 0, 0));
+      await this.props.dispatch(infoAction(data, releases, incomes, expenses, balance));
     })();
   }
 
@@ -25,20 +28,26 @@ export class Info extends Component {
         <div style={styles.border}>
           <div style={styles.row} className='row'>
             <div className='col s3'>
-              <span style={styles.span}>Lançamentos: </span>
-              {this.props.releases}
+              <span style={styles.span.generic}>Lançamentos: </span>
+              <span>{this.props.releases}</span>
             </div>
             <div className='col s3'>
-              <span style={styles.span}>Receitas:</span>
-              {}
+              <span style={styles.span.generic}>Receitas: </span>
+              <span style={styles.span.income}>
+                {Number.parseFloat(this.props.incomes).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+              </span>
             </div>
             <div className='col s3'>
-              <span style={styles.span}>Despesas:</span>
-              {}
+              <span style={styles.span.generic}>Despesas: </span>
+              <span style={styles.span.expenses}>
+                {Number.parseFloat(this.props.expenses).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+              </span>
             </div>
             <div className='col s3'>
-              <span style={styles.span}>Saldo:</span>
-              {}
+              <span style={styles.span.generic}>Saldo: </span>
+              <span style={styles.span.balance}>
+                {Number.parseFloat(this.props.balance).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+              </span>
             </div>
           </div>
         </div>
@@ -73,6 +82,20 @@ const styles = {
     margin: 0,
   },
   span: {
-    fontWeight: 'bold',
+    generic: {
+      fontWeight: 'bold',
+    },
+    income: {
+      fontWeight: 'bold',
+      color: 'green',
+    },
+    expenses: {
+      fontWeight: 'bold',
+      color: 'red',
+    },
+    balance: {
+      fontWeight: 'bold',
+      color: 'green',
+    },
   },
 };

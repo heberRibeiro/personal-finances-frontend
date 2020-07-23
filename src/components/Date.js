@@ -18,9 +18,13 @@ class Date extends Component {
 
     (async () => {
       const res = await api.get(tranformPeriod(monthYearCurrent));
-      const releases = await res.data.lenght;
+      const data = await res.data;
+      const releases = await data.lenght;
+      const incomes = await data.income;
+      const expenses = await data.expenses;
+      const balance = await data.balance;
 
-      await this.props.dispatch(infoAction(80, releases, 50));
+      await this.props.dispatch(infoAction(data, releases, incomes, expenses, balance));
     })();
   }
 
