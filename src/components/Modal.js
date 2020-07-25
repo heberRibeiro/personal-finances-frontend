@@ -52,7 +52,7 @@ class Modal extends Component {
               <form style={styles.form} className='col s12'>
                 <p>
                   <label>
-                    <input name='group1' type='radio' checked />
+                    <input name='group1' type='radio' defaultChecked />
                     <span>Red</span>
                   </label>
                 </p>
@@ -64,12 +64,12 @@ class Modal extends Component {
                 </p>
 
                 <div className='input-field col s12'>
-                  <textarea id='description' className='materialize-textarea'></textarea>
-                  <label for='description'>Descrição</label>
+                  <textarea className='materialize-textarea'></textarea>
+                  <label htmlFor='description'>Descrição</label>
                 </div>
                 <div className='input-field col s12'>
-                  <textarea id='category' className='materialize-textarea'></textarea>
-                  <label for='category'>Categoria</label>
+                  <textarea className='materialize-textarea'></textarea>
+                  <label htmlFor='category'>Categoria</label>
                 </div>
               </form>
             </div>

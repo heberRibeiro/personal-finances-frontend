@@ -6,7 +6,7 @@ import Buttons from './Buttons';
 
 export class Card extends Component {
   componentDidMount() {
-    console.log(this.props.values);
+    // console.log(this.props.values);
   }
 
   render() {
