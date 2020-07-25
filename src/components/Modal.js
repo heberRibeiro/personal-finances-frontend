@@ -31,7 +31,11 @@ class Modal extends Component {
     // instance.close();
     // instance.destroy();
   }
-
+  datePicker(e) {
+    const elems = e.target;
+    const instances = M.Datepicker.init(elems);
+    instances.open();
+  }
   render() {
     return (
       <div>
@@ -41,7 +45,7 @@ class Modal extends Component {
           }}
           id='modal1'
           className='modal'
-          style={{ width: '75%' }}
+          style={{ width: '65%' }}
         >
           {/* If you want Bottom Sheet Modal then add 
                         bottom-sheet class to the "modal" div
@@ -73,6 +77,18 @@ class Modal extends Component {
                   <textarea className='materialize-textarea'></textarea>
                   <label htmlFor='category'>Categoria</label>
                 </div>
+                <div style={{ padding: '0 .75rem', display: 'flex', flexDirection: 'row', justifyContent: 'left', alignItems: 'center' }}>
+                  <div style={styles.value} className='input-field'>
+                    <textarea className='materialize-textarea'></textarea>
+                    <label htmlFor='value'>Valor</label>
+                  </div>
+                  <div style={styles.datePicker}>
+                    <input style={styles.inputDataPicker} onClick={this.datePicker} type='text' className='datepicker col s6'></input>
+                    <i style={styles.icon} className='small material-icons'>
+                      date_range
+                    </i>
+                  </div>
+                </div>
               </form>
             </div>
           </div>
@@ -102,7 +118,28 @@ const styles = {
   input: {
     display: 'inline-block',
     margin: 14,
-    // flexDirection: 'row',
-    // justifyContent: 'center',
+  },
+  datePicker: {
+    marginTop: '1rem',
+    marginBottom: '1rem',
+    marginLeft: '1rem',
+    padding: '0 10.5px',
+    height: 40,
+    width: '50%',
+    border: '1px solid grey',
+    borderRadius: 5,
+  },
+  value: {
+    width: '50%',
+  },
+  inputDataPicker: {
+    borderBottom: 0,
+    boxShadow: '0 0',
+    width: '85%',
+  },
+  icon: {
+    position: 'relative',
+    top: '50%',
+    transform: 'translateY(-50%)',
   },
 };
