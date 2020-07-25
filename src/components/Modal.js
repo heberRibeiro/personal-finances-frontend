@@ -52,7 +52,16 @@ class Modal extends Component {
                         If you want Fixed Footer Modal then add
                         modal-fixed-footer to the "modal" div*/}
           <div className='modal-content'>
-            <h4>Edição de Lançamento</h4>
+            <div style={styles.header}>
+              <h4>
+                <b>Edição de Lançamento</b>
+              </h4>
+              <div style={styles.close}>
+                <i style={{ color: 'white' }} className='modal-close material-icons'>
+                  close
+                </i>
+              </div>
+            </div>
             <div style={styles.content}>
               <form style={styles.form} className='col s12'>
                 <div>
@@ -91,10 +100,7 @@ class Modal extends Component {
                 </div>
               </form>
             </div>
-          </div>
-          <div className='modal-footer'>
-            <i className='modal-close waves-effect waves-red btn-flat'>Disagree</i>
-            <i className='modal-close waves-effect waves-green btn-flat'>Agree</i>
+            <button class='waves-effect waves-light btn'>Salvar</button>
           </div>
         </div>
       </div>
@@ -105,12 +111,31 @@ class Modal extends Component {
 export default Modal;
 
 const styles = {
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  close: {
+    display: 'flex',
+    width: '5vw',
+    height: '7vh',
+    borderRadius: 5,
+    marginBottom: '0.912rem',
+    backgroundColor: '#de1d1d',
+    boxShadow: '3px 3px #905c5c',
+    cursor: 'pointer',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
   form: {
     display: 'flex',
     flexDirection: 'column',
   },
   content: {
     display: 'flex',
+    marginBottom: '10px',
     justifyContent: 'center',
     border: '1px solid gray',
     borderRadius: '5px',
