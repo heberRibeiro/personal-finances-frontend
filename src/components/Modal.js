@@ -33,23 +33,17 @@ class Modal extends Component {
   }
   datePicker(e) {
     const elems = e.target;
-    const instances = M.Datepicker.init(elems);
+    const instances = M.Datepicker.init(elems, { format: 'yyyy-mm-dd' });
     instances.open();
   }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     transaction: this.props.transaction,
-  //   };
+  constructor(props) {
+    super(props);
+    this.state = {
+      expense: this.props.transaction.type === '-',
+      income: this.props.transaction.type === '+',
+    };
+  }
 
-  //   this.changeValue = this.changeValue.bind(this);
-  // }
-
-  // changeValue(e) {
-  //   const elem = e.target;
-  //   const valor = elem.value;
-  //   this.setState({ transaction: { ...this.state.transaction, description: valor } });
-  // }
   render() {
     return (
       <div>
@@ -81,13 +75,13 @@ class Modal extends Component {
                 <div>
                   <p style={styles.input}>
                     <label>
-                      <input name='group1' type='radio' defaultChecked />
+                      <input name='group1' type='radio' defaultChecked={this.state.expense} />
                       <span>Despesa</span>
                     </label>
                   </p>
                   <p style={styles.input}>
                     <label>
-                      <input name='group1' type='radio' />
+                      <input name='group1' type='radio' defaultChecked={this.state.income} />
                       <span>Receita</span>
                     </label>
                   </p>
@@ -106,7 +100,13 @@ class Modal extends Component {
                     <label htmlFor='value'>Valor</label>
                   </div>
                   <div style={styles.datePicker}>
-                    <input style={styles.inputDataPicker} onClick={this.datePicker} type='text' className='datepicker col s6'></input>
+                    <input
+                      defaultValue={this.props.transaction.yearMonthDay}
+                      style={styles.inputDataPicker}
+                      onClick={this.datePicker}
+                      type='text'
+                      className='datepicker col s6'
+                    ></input>
                     <i style={styles.icon} className='small material-icons'>
                       date_range
                     </i>
