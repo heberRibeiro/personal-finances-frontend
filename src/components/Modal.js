@@ -36,6 +36,20 @@ class Modal extends Component {
     const instances = M.Datepicker.init(elems);
     instances.open();
   }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     transaction: this.props.transaction,
+  //   };
+
+  //   this.changeValue = this.changeValue.bind(this);
+  // }
+
+  // changeValue(e) {
+  //   const elem = e.target;
+  //   const valor = elem.value;
+  //   this.setState({ transaction: { ...this.state.transaction, description: valor } });
+  // }
   render() {
     return (
       <div>
@@ -43,7 +57,7 @@ class Modal extends Component {
           ref={Modal => {
             this.Modal = Modal;
           }}
-          id='modal1'
+          id={`modal${this.props.transaction._id}`}
           className='modal'
           style={{ width: '65%' }}
         >
@@ -79,16 +93,16 @@ class Modal extends Component {
                   </p>
                 </div>
                 <div className='input-field col s12'>
-                  <textarea className='materialize-textarea'></textarea>
+                  <textarea defaultValue={this.props.transaction.description} className='materialize-textarea'></textarea>
                   <label htmlFor='description'>Descrição</label>
                 </div>
                 <div className='input-field col s12'>
-                  <textarea className='materialize-textarea'></textarea>
+                  <textarea defaultValue={this.props.transaction.category} className='materialize-textarea'></textarea>
                   <label htmlFor='category'>Categoria</label>
                 </div>
                 <div style={{ padding: '0 .75rem', display: 'flex', flexDirection: 'row', justifyContent: 'left', alignItems: 'center' }}>
                   <div style={styles.value} className='input-field'>
-                    <textarea className='materialize-textarea'></textarea>
+                    <textarea defaultValue={this.props.transaction.value} className='materialize-textarea'></textarea>
                     <label htmlFor='value'>Valor</label>
                   </div>
                   <div style={styles.datePicker}>
@@ -100,7 +114,7 @@ class Modal extends Component {
                 </div>
               </form>
             </div>
-            <button class='waves-effect waves-light btn'>Salvar</button>
+            <button className='waves-effect waves-light btn'>Salvar</button>
           </div>
         </div>
       </div>
