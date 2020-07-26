@@ -15,7 +15,25 @@ export class Search extends Component {
       return transaction.description.includes(valueSearched);
     });
 
-    this.props.dispatch(searchAction(filtered));
+    const releases = filtered.length;
+
+    const incomes = filtered.reduce((acc, currentValue) => {
+      if (currentValue.type === '+') {
+        acc += currentValue.value;
+      }
+      return acc;
+    }, 0);
+
+    const expenses = filtered.reduce((acc, curr) => {
+      if (curr.type === '-') {
+        acc += curr.value;
+      }
+      return acc;
+    }, 0);
+
+    const balance = incomes - expenses;
+
+    this.props.dispatch(searchAction(filtered, releases, incomes, expenses, balance));
   };
 
   render() {

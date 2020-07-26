@@ -15,6 +15,10 @@ export default function info(state = '', action) {
       return {
         ...state,
         filter: action.filter,
+        releases: action.releases,
+        incomes: action.incomes,
+        expenses: action.expenses,
+        balance: action.balance,
       };
 
     default:
