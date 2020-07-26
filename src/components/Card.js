@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Modal from './Modal';
 import Buttons from './Buttons';
+import Exclusion from './Exclusion';
 
 export class Card extends Component {
   componentDidMount() {
@@ -26,6 +27,7 @@ export class Card extends Component {
             <div style={styles.currency}>{this.props.transaction.value}</div>
             <Buttons transaction={this.props.transaction} />
             <Modal transaction={this.props.transaction} />
+            <Exclusion transaction={this.props.transaction} />
           </div>
         </div>
       </div>

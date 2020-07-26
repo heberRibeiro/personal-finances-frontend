@@ -8,7 +8,7 @@ export class Buttons extends Component {
         <i style={styles.cursor} className='material-icons modal-trigger' data-target={`modal${this.props.transaction._id}`}>
           mode_edit
         </i>
-        <i style={styles.cursor} className='material-icons modal-trigger' data-target='modal1'>
+        <i style={styles.cursor} className='material-icons modal-trigger' data-target={`modalExclusion${this.props.transaction._id}`}>
           delete
         </i>
       </div>
