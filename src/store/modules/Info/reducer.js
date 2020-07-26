@@ -8,6 +8,13 @@ export default function info(state = '', action) {
         expenses: action.expenses,
         balance: action.balance,
         transaction: action.transaction,
+        filter: action.transaction,
+      };
+
+    case 'SEARCH_ACTION':
+      return {
+        ...state,
+        filter: action.filter,
       };
 
     default:

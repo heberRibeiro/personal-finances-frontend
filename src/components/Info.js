@@ -61,6 +61,7 @@ const mapStateToProps = state => {
     incomes: state.infoReducer.incomes,
     expenses: state.infoReducer.expenses,
     balance: state.infoReducer.balance,
+    filter: state.infoReducer.filter,
   };
 };
 

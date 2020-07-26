@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import searchAction from '../store/modules/Search/action';
+
 export class Search extends Component {
+  componentDidMount() {
+    //
+  }
+
+  searchTransaction = e => {
+    const valueSearched = e.target.value;
+
+    const filtered = this.props.transaction.filter((transaction, index) => {
+      return transaction.description.includes(valueSearched);
+    });
+
+    this.props.dispatch(searchAction(filtered));
+  };
+
   render() {
     return (
       <div className='container center'>
@@ -10,7 +26,7 @@ export class Search extends Component {
             + Novo Lançamento
           </button>
           <div style={styles.input} className='input-field col s8'>
-            <input style={styles.input} placeholder='Filtro' id='first_name' type='text' className='validate' />
+            <input onChange={this.searchTransaction} style={styles.input} placeholder='Filtro' id='first_name' type='text' className='validate' />
           </div>
         </div>
       </div>
@@ -18,11 +34,12 @@ export class Search extends Component {
   }
 }
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  transaction: state.infoReducer.transaction,
+  filter: state.infoReducer.filter,
+});
 
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps)(Search);
 
 const styles = {
   border: {

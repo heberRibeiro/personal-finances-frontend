@@ -11,9 +11,9 @@ export class Cards extends Component {
   render() {
     return (
       <div>
-        {this.props.transaction === undefined && 'Caregando...'}
-        {this.props.transaction !== undefined &&
-          this.props.transaction.map(transaction => {
+        {this.props.filter === undefined && 'Caregando...'}
+        {this.props.filter !== undefined &&
+          this.props.filter.map(transaction => {
             let tag = transaction.type === '-' ? 'expense' : 'income';
 
             return <Card stylus={`${tag}`} key={transaction._id} transaction={transaction} />;
@@ -31,6 +31,7 @@ const mapStateToProps = state => ({
   expenses: state.infoReducer.expenses,
   balance: state.infoReducer.balance,
   transaction: state.infoReducer.transaction,
+  filter: state.infoReducer.filter,
 });
 
 export default connect(mapStateToProps)(Cards);
