@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 
+import api from '../api';
+
 class Modal extends Component {
   componentDidMount() {
     const options = {
@@ -36,12 +38,50 @@ class Modal extends Component {
     const instances = M.Datepicker.init(elems, { format: 'yyyy-mm-dd' });
     instances.open();
   }
+
+  updateData(e) {
+    const data = {
+      description: e.target.description.value,
+      value: e.target.value.value,
+      category: e.target.category.value,
+      year: e.target.yearMonthDay.value.split('-')[0],
+      month: e.target.yearMonthDay.value.split('-')[1],
+      day: e.target.yearMonthDay.value.split('-')[2],
+      yearMonth: e.target.yearMonthDay.value.split('-')[0] + '-' + e.target.yearMonthDay.value.split('-')[1],
+      yearMonthDay: e.target.yearMonthDay.value,
+      type: this.state.expense === true ? '-' : '+',
+    };
+
+    const ap = async () => {
+      await api.update(this.props.transaction._id, data);
+    };
+    ap();
+
+    e.preventDefault();
+  }
+
+  changeExpense(e) {
+    if (e.target.value === 'on') {
+      this.setState({ expense: true, income: false });
+    }
+  }
+
+  changeIncome(e) {
+    if (e.target.value === 'on') {
+      this.setState({ expense: false, income: true });
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       expense: this.props.transaction.type === '-',
       income: this.props.transaction.type === '+',
     };
+
+    this.updateData = this.updateData.bind(this);
+    this.changeExpense = this.changeExpense.bind(this);
+    this.changeIncome = this.changeIncome.bind(this);
   }
 
   render() {
@@ -71,36 +111,37 @@ class Modal extends Component {
               </div>
             </div>
             <div style={styles.content}>
-              <form style={styles.form} className='col s12'>
+              <form onSubmit={this.updateData} style={styles.form} className='col s12'>
                 <div>
                   <p style={styles.input}>
                     <label>
-                      <input name='group1' type='radio' defaultChecked={this.state.expense} />
+                      <input onChange={this.changeExpense} name='group1' type='radio' defaultChecked={this.state.expense} />
                       <span>Despesa</span>
                     </label>
                   </p>
                   <p style={styles.input}>
                     <label>
-                      <input name='group1' type='radio' defaultChecked={this.state.income} />
+                      <input onChange={this.changeIncome} name='group1' type='radio' defaultChecked={this.state.income} />
                       <span>Receita</span>
                     </label>
                   </p>
                 </div>
                 <div className='input-field col s12'>
-                  <textarea defaultValue={this.props.transaction.description} className='materialize-textarea'></textarea>
+                  <textarea name='description' defaultValue={this.props.transaction.description} className='materialize-textarea'></textarea>
                   <label htmlFor='description'>Descrição</label>
                 </div>
                 <div className='input-field col s12'>
-                  <textarea defaultValue={this.props.transaction.category} className='materialize-textarea'></textarea>
+                  <textarea name='category' defaultValue={this.props.transaction.category} className='materialize-textarea'></textarea>
                   <label htmlFor='category'>Categoria</label>
                 </div>
                 <div style={{ padding: '0 .75rem', display: 'flex', flexDirection: 'row', justifyContent: 'left', alignItems: 'center' }}>
                   <div style={styles.value} className='input-field'>
-                    <textarea defaultValue={this.props.transaction.value} className='materialize-textarea'></textarea>
+                    <textarea name='value' defaultValue={this.props.transaction.value} className='materialize-textarea'></textarea>
                     <label htmlFor='value'>Valor</label>
                   </div>
                   <div style={styles.datePicker}>
                     <input
+                      name='yearMonthDay'
                       defaultValue={this.props.transaction.yearMonthDay}
                       style={styles.inputDataPicker}
                       onClick={this.datePicker}
@@ -112,9 +153,11 @@ class Modal extends Component {
                     </i>
                   </div>
                 </div>
+                <button type='submit' className='waves-effect waves-light btn'>
+                  Salvar
+                </button>
               </form>
             </div>
-            <button className='waves-effect waves-light btn'>Salvar</button>
           </div>
         </div>
       </div>

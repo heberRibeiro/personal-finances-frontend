@@ -28,7 +28,12 @@ const get = async period => {
   }
 };
 
+const update = async (id, data) => {
+  await http.put(`api/transaction/${id}`, data);
+};
+
 module.exports = {
   getAll,
   get,
+  update,
 };
