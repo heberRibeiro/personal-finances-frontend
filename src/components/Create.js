@@ -4,7 +4,7 @@ import 'materialize-css/dist/css/materialize.min.css';
 
 import * as api from '../api';
 
-class Modal extends Component {
+class Create extends Component {
   componentDidMount() {
     const options = {
       onOpenStart: () => {
@@ -160,7 +160,7 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+export default Create;
 
 const styles = {
   header: {
