@@ -1,13 +1,14 @@
-const http = require('./http-common').default;
+import http from './http-common';
 
-const getAll = () => {
+export const getAll = () => {
   return http.get('/api/transaction');
 };
 
-const get = async period => {
+export const get = async period => {
   try {
-    const res = await http.get(`api/transaction/period?period=${period}`);
+    let res = await http.get(`api/transaction/period?period=${period}`);
 
+    res = JSON.stringify(res);
     const data = await res.data;
     const releases = await data.lenght;
     const incomes = await data.income;
@@ -28,19 +29,19 @@ const get = async period => {
   }
 };
 
-const update = async (id, data) => {
-  await http.put(`api/transaction/${id}`, data);
+export const update = async (id, data) => {
+  await http.put(`api/transaction/${id}`, JSON.parse(data));
 };
 
-const remove = async id => {
+export const remove = async id => {
   await http.delete(`api/transaction/${id}`);
 };
 
-const create = async data => {
-  await http.post('api/transaction/', data);
+export const create = async data => {
+  await http.post('api/transaction/', JSON.parse(data));
 };
 
-module.exports = {
+export default {
   getAll,
   get,
   update,
