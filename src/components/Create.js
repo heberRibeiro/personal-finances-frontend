@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 
-import api from '../api';
+import * as api from '../api';
 
 class Modal extends Component {
   componentDidMount() {

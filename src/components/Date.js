@@ -7,7 +7,7 @@ import enableDisableButtons from '../utils/enableDisableButtons';
 import tranformPeriod from '../utils/tranformPeriod';
 import infoAction from '../store/modules/Info/action';
 
-import api from '../api';
+import * as api from '../api';
 
 class Date extends Component {
   //
