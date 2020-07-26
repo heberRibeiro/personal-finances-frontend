@@ -9,6 +9,7 @@ import BtnRight from './components/BtnRight';
 import Info from './components/Info';
 import Search from './components/Search';
 import Cards from './components/Cards';
+import Create from './components/Create';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
       </div>
       <Info />
       <Search />
+      <Create />
       <Cards />
     </Provider>
   );

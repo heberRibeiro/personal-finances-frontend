@@ -6,7 +6,9 @@ export class Search extends Component {
     return (
       <div className='container center'>
         <div style={styles.row} className='row'>
-          <button className='waves-effect waves-light btn col s4'>+ Novo Lançamento</button>
+          <button className='waves-effect waves-light btn col s4 material-icons modal-trigger' data-target={'modalCreate'}>
+            + Novo Lançamento
+          </button>
           <div style={styles.input} className='input-field col s8'>
             <input style={styles.input} placeholder='Filtro' id='first_name' type='text' className='validate' />
           </div>

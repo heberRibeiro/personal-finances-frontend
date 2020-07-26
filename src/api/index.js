@@ -36,9 +36,14 @@ const remove = async id => {
   await http.delete(`api/transaction/${id}`);
 };
 
+const create = async data => {
+  await http.post('api/transaction/', data);
+};
+
 module.exports = {
   getAll,
   get,
   update,
   remove,
+  create,
 };
