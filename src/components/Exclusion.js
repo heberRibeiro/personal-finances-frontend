@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import M from 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 
+import api from '../api';
+
 export default class Exclusion extends Component {
   componentDidMount() {
     const options = {
@@ -36,6 +38,12 @@ export default class Exclusion extends Component {
     const instances = M.Datepicker.init(elems, { format: 'yyyy-mm-dd' });
     instances.open();
   }
+  deleteData = async e => {
+    e.preventDefault();
+    const id = this.props.transaction._id;
+
+    await api.remove(id);
+  };
   render() {
     return (
       <div>
@@ -63,7 +71,7 @@ export default class Exclusion extends Component {
               </div>
             </div>
             <div>
-              <form onSubmit={this.updateData} className='col s12'>
+              <form onSubmit={this.deleteData} className='col s12'>
                 <button type='submit' className='waves-effect waves-light btn'>
                   Sim
                 </button>

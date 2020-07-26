@@ -32,8 +32,13 @@ const update = async (id, data) => {
   await http.put(`api/transaction/${id}`, data);
 };
 
+const remove = async id => {
+  await http.delete(`api/transaction/${id}`);
+};
+
 module.exports = {
   getAll,
   get,
   update,
+  remove,
 };
